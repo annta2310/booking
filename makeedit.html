@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Booking</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script>
+        $(function(){
+            $("#fromDate").datepicker({dateFormat:"yy-mm-dd"});
+            $("#toDate").datepicker({dateFormat:"yy-mm-dd"});
+        });
+    </script>
+</head>
+<body>
+    <h2>Edit a Booking</h2>
+    <h2>
+        <a href="makecurrent.html">[Back to Booking List]</a>
+        <a href="index.php">[Back to Main Page]</a>
+    </h2>
+    <h3>Booking for Test</h3>
+    <form>
+        <p>
+            <label for="room">Room (Name, Type, Beds):</label>
+            <select name="room" id="room" required>
+                <option value="Kelly S 5">Kelly S 5</option>
+                <option value="Octavia D 2">Octavia D 2</option>
+                <option value="Cole S 1">Cole S 1</option>
+                <option value="Dane S 4">Dane S 4</option>
+            </select>
+        </p>
+        <p>
+            <label for="fromDate">CheckIn Date:</label>
+            <input type="text" id="fromDate" name="fromDate" placeholder="yyyy-mm-dd" required>
+        </p>
+        <p>
+            <label for="toDate">CheckOut Date:</label>
+            <input type="text" id="toDate" name="toDate" placeholder="yyyy-mm-dd">
+        </p>
+        <p>
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" placeholder="(001) 345-4567">
+        </p>
+        <p>
+            <label for="bookingExtras">Booking Extras:</label>
+            <textarea id="bookingExtras" name="bookingExtras" rows="5" cols="10" placeholder="None" required></textarea>
+        </p>
+        <p>
+            <label for="roomReview">Room Review:</label>
+            <textarea id="roomReview" name="roomReview" rows="5" cols="10" placeholder="None" required></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Update">
+            <input type="reset" value="Cancel">
+        </p>
+    </form>
+</body>
+</html>

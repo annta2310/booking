@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script>
+        $(function(){
+            $("#fromDate").datepicker({dateFormat:"yy-mm-dd"});
+            $("#toDate").datepicker({dateFormat:"yy-mm-dd"});
+        });
+    </script>
+</head>
+<body>
+    <h2>Book a Room</h2>
+    <h2>
+        <a href="makecurrent.html">[Back to Booking List]</a>
+        <a href="index.php">[Back to Main Page]</a>
+    </h2>
+    <h3>Booking for Test</h3>
+    <form>
+        <p>
+            <label for="room">Room (Name, Type, Beds):</label>
+            <select name="room" id="room" required>
+                <option value="Kelly S 5">Kelly S 5</option>
+                <option value="Octavia D 2">Octavia D 2</option>
+                <option value="Cole S 1">Cole S 1</option>
+                <option value="Dane S 4">Dane S 4</option>
+            </select>
+        </p>
+        <p>
+            <label for="fromDate">CheckIn Date:</label>
+            <input type="text" id="fromDate" name="fromDate" placeholder="yyyy-mm-dd" pattern="\d{4}-\d{2}-\d{2}" title="Date format: yyyy-mm-dd" required>
+        </p>
+        <p>
+            <label for="toDate">CheckOut Date:</label>
+            <input type="text" id="toDate" name="toDate" placeholder="yyyy-mm-dd" pattern="\d{4}-\d{2}-\d{2}" title="Date format: yyyy-mm-dd" required>
+        </p>
+        <p>
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" placeholder="(###) ###-####" pattern="\(\d{3}\) \d{3}-\d{4}" title="Phone number format: (###) ###-####" required>
+        </p>
+        <p>
+            <label for="bookingExtras">Booking Extras:</label>
+            <textarea id="bookingExtras" name="bookingExtras" rows="5" cols="10" required></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Add">
+            <input type="reset" value="Cancel">
+        </p>
+    </form>
+</body>
+</html>!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Room</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h2>Book a Room</h2>
+    <form id="bookingForm">
+        <p>
+            <label for="room">Room (Name, Type, Beds):</label>
+            <select name="room" id="room" required>
+                <option value="Kelly S 5">Kelly S 5</option>
+                <option value="Octavia D 2">Octavia D 2</option>
+                <option value="Cole S 1">Cole S 1</option>
+                <option value="Dane S 4">Dane S 4</option>
+            </select>
+        </p>
+        <p>
+            <label for="fromDate">CheckIn Date:</label>
+            <input type="text" id="fromDate" name="fromDate" required>
+        </p>
+        <p>
+            <label for="toDate">CheckOut Date:</label>
+            <input type="text" id="toDate" name="toDate" required>
+        </p>
+        <p>
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" required>
+        </p>
+        <p>
+            <label for="bookingExtras">Booking Extras:</label>
+            <textarea id="bookingExtras" name="bookingExtras" rows="5" cols="10" required></textarea>
+        </p>
+        <p>
+            <button type="submit">Submit Booking</button>
+        </p>
+    </form>
+
+    <script>
+        $(document).ready(function(){
+            // AJAX request on form submission
+            $('#bookingForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting via the browser
+
+                // Capture form data
+                const formData = {
+                    room: $('#room').val(),
+                    fromDate: $('#fromDate').val(),
+                    toDate: $('#toDate').val(),
+                    contactNumber: $('#contactNumber').val(),
+                    bookingExtras: $('#bookingExtras').val(),
+                };
+
+                // Send AJAX POST request to the booking API
+                $.ajax({
+                    url: 'http://localhost/bnb/api_bookings.php',  // Adjust the URL based on the project setup
+                    type: 'POST',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        alert('Booking successfully submitted!');
+                        console.log(response); // Log response to check if it's successful
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error submitting the booking.');
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
